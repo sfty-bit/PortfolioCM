@@ -1,0 +1,220 @@
+---
+title: "Portfolio de Ciencia de Materiales"
+date: "10/8/2019"
+author: "Alejandro Burguete Medialdea"
+output: html_document
+---
+
+---
+```{rsetup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Práctica 1. Ensayo de tracción
+
+### 1.1. Introducción/anotaciones
+
+En esta práctica nos dedicaremos a romper distintos tipos de materiales aplicando un esfuerzo de tracción, este ensayo no es aplicable a materiales cerámicos. Es un ensayo estático (realizados a muy baja velocidad).
+
+Para realizar dicho ensayo emplearemos el uso de una máquina universal de ensayos conectada a un respectivo software para enviar y recibir datos, la máquina compuesta por dos partes principales: las mordazas donde se fijara la probeta y una célula de carga, que se encargará de realizar la fuerza, además, la máquina debe ser capaz de:
+
+- Alcanzar la fuerza necesaria para romper la probeta
+- Controlar la velocidad de deformación de la probeta
+- Registrar la fuerza aplicada
+- Registrar la deformación aplicada
+
+
+En la práctica es importante el conocimiento sobre la muestra que se le conoce como probeta, la forma de esta es más ancha por los extremos que por el centro con el fin de que rompa más próximo al centro para que sea más cómo la medición de esta, además, para trabajar adecuadamente conviene primero realizar unas marcas sobre el centro de la muestra que ayuden a la medida una vez este rompa y se encuentre deformado, y evidentemente se buscará que la rotura sea en ya mencionada sección.
+
+
+
+### 1.2. Objetivos
+
+Los objetivos en esta práctica serán los de observar y anotar las medidas de cada uno de los tres ensayos y poder realizar los diferentes cálculos para hallar las propiedades de cada material, además de entender como funciona una gráfica de tracción y saber diferenciar conceptos como zona plástica y zona elástica entre otros.
+
+Saber el funcionamiento de la máquina y del software utilizado.
+
+### 1.3. Resultados
+```{r, echo = FALSE}
+#Medidas y cálculos----
+
+#Son los valores iniciales y finales además de las fuerzas en los últimos dos puestos de cada vector
+MedAcero <- c(50, 12.5, 1, 76, 8.5, 0.8, 2129, 3749) 
+Sec0Ac <- MedAcero[2] * MedAcero[3]
+SecfAc <- MedAcero[5] * MedAcero[6]
+TensElAc <- MedAcero[7] / Sec0Ac
+TensMaxAc <- MedAcero[8] / Sec0Ac
+AlAc <- (MedAcero[4] - MedAcero[1]) / MedAcero[1]
+ZAc <- (Sec0Ac - SecfAc) / Sec0Ac
+  
+MedCobre <- c(50, 12.5, 1, 70, 11, 0.9, 476, 2652)
+Sec0Co <- MedCobre[2] * MedCobre[3]
+SecfCo <- MedCobre[5] * MedCobre[6]
+TensElCo <- MedCobre[7] / Sec0Co
+TensMaxCo <- MedCobre[8] / SecfAc
+AlCo <- (MedCobre[4] - MedCobre[1]) / MedCobre[1]
+ZCo <- (Sec0Co -SecfCo) /Sec0Co
+
+MedPolímero <- c(50, 10, 4, 350, 4.5, 1.2, 754.75, 972.27)
+Sec0Pol <- MedPolímero[2] * MedPolímero[3]
+SecfPol <- MedPolímero[5] * MedPolímero[6]
+TensElPol <- MedPolímero[7] / Sec0Pol
+TensMaxPol <- MedPolímero[8] / Sec0Pol
+AlPol <- (MedPolímero[4] - MedPolímero[1]) / MedPolímero[1]
+ZPol <- (Sec0Pol -SecfPol) / Sec0Pol
+
+
+#Resultados finales----
+Acero <- c(MedAcero[1:3], Sec0Ac, MedAcero[4:6], SecfAc, MedAcero[7], MedAcero[8], TensElAc, TensMaxAc, AlAc, ZAc)
+Cobre <- c(MedCobre[1:3], Sec0Co, MedCobre[4:6], SecfCo, MedCobre[7], MedCobre[8], TensElCo, TensMaxCo, AlCo, ZCo)
+Polímero<- c(MedPolímero[1:3], Sec0Pol, MedPolímero[4:6], SecfPol, MedPolímero[7], MedPolímero[8], TensElPol, TensMaxPol, AlPol, ZPol)
+
+
+T.Tabla <- data.frame(Acero, Cobre, Polímero)
+Tabla <- t(T.Tabla)
+colnames(Tabla) <- c("Longitud inicial (mm)", "Anchura inicial (mm)", "Espesor inicial (mm)", "Sección inical (mm^2)", "Longitud final (mm)", "Anchura final (mm)", "Espesor final (mm)", "Sección final (mm^2)", "Fuerza elástica (N)", "Fuerza máxima (N)", "Tensión elástica (MPa)", "Tensión máxima (MPa)", "Alargamiento (%)", "Zona plástica (%)")
+knitr::kable(Tabla)
+
+
+#LOS RESULTADOS NO TERMINAN DE CONVENCERME
+```
+
+
+
+*1.* Trazar el diagrama real (tensiones ‐ deformaciones unitarias) de los ensayos de tracción realizados sobre el acero F‐1140.
+
+
+*2.* Se desea construir un soporte de acero F‐1140 que sujete un peso de 4.500 kg. Calcular el diámetro mínimo de la barra necesario para que una vez liberado el peso recobre sus dimensiones iniciales.
+
+Si tiene que soportar una masa de 4.500kg, el peso será dicho número multipliacado por la cosntante de la aceleración gravitatoria: $$4.500kg * 9.81m/s^2 = 44145N$$
+
+En este caso el peso es la única fuerza que actúa sobre la carga entonces tendremos que ver cuanto
+
+*3.* Se dispone de un soporte de acero F‐1140 ensayado con una sección de 75 mm2que está sometida a tracción. Calcular el peso máximo que puede soportar sin que se produzca deformación permanente.
+
+### 1.4. Conclusiones
+
+El polímero es más elástico....
+
+
+## Práctica 2. Ensayo de resilencia
+
+### 2.1 Introducción/anotaciones
+
+Antes de comenzar a explicar el ensayo es importante comentar el concepto de entalla, llamaremos entalla a aquella muesca realizada sobre la probeta para lograr que determinados materiales rompan sin tener que aumentar el impacto y además controlar por la superficie donde rompa, estas entallas se clasifican según su radio de entalla, es importante enteder que a menor radio de entalla será más fácil romper el material. Las entallas se realizan con diferentes sierras especiales para cada tipo de entalla y cada sierra puede costar perfectamente alrededor de 2000$.
+
+Existe un movimiento relativo de un material sobre otro, por lo tanto esta práctica, a diferencia de la otra se le considera un ensayo dinámico. Existen dos métodos para realizar este ensayo, el que usaremos nosotros será el Charpy donde la probeta se colocará biapoyada y el golpe será realizado por la parte contraria a donde está la entalla situada, la otra forma se le conoce como el método Izod y en este caso el material preparado para el impacto se colocará empotrado y el impacto será realizado en la misma sección que la entalla y lo más abajo posible.
+
+Para saber la energía absorvida por el material tendremos que ver el incremento (negativo) de energía perdida del péndulo tras el impacto con la probeta, esto ya no es necesario medirlo gracias a que las máquinas modernas son conscientes del ángulo de inclinación que alcanza el péndulo tras impactar con la probeta y nos dan el valor de trabajo y resilencia que corresponde en cada caso digitalmente, o mediante una escala calibrada en unidades industriales, como fue en el caso de la práctica en el laboratorio.
+
+Además para el correcto realizamiento de la práctica será necesario tener en cuenta que $Resilecnia=\frac{Trabajo_{Kg*m}}{Sección_{cm^{2}}}$.
+
+
+### 2.2 Objetivos
+
+Entender el funcionamiento de la máquina y saber determinar la resilencia de un material con la ayuda de la obtención previa de trabajo que ha de realizar el péndulo de Charpy. Además de que condiciones afectan a la resistencia de un material frente a un impacto.
+
+### 2.3 Resultados
+
+``` {r, echo = FALSE}
+
+#Primero definimos todas las variables
+ImpactProb1<-c("Sin entalla",20,100,28,28)
+ImpactProb2<-c(0,20,80,1.1,1.375)
+ImpactProb3<-c(0.25,20,80,2,2.5)
+ImpactProb4<-c(0.5,20,80,2.4,3)
+ImpactProb5<-c(1,20,80,3.2,4)
+ImpactProb6<-c(1.5,20,80,3.9,4.875)
+ImpactProb7<-c(0.25,-5,80,0.3,0.375)
+
+ImpactRadioEnt<-c(0,0.25,0.5,1,1.5)
+ImpactResilenciEnt<-c(1.375,2.5,3,4,4.875)
+
+ImpactTemp<-c(-5,20)
+ImpactResilenTemp<-c(0.375,2.5)
+
+
+
+#Cada valor de los vectores corresponden a una probeta diferente
+
+#Radio entalla
+Radio <-c("Sin entalla",0,0.25,0.50,1,1.5,0.25)
+#Temperatura
+Temperatura<- c(20,20,20,20,20,20,-5)
+#Sección
+Sección <-c(100,80,80,80,80,80,80)
+#Trabajo
+Trabajo<-c(28,1.1,2,2.4,3.2,3.9,0.3)
+#Resilencia
+Resilencia<-c(28,1.375,2.5,3,3.4,4.875,0.375)
+
+T.Tabla1 <- data.frame(Radio, Temperatura, Sección, Trabajo, Resilencia)
+Tabla1 <- t(T.Tabla1)
+colnames(Tabla1)<-c("Probeta1","Probeta1","Probeta1","Probeta1","Probeta1","Probeta1","Probeta1")
+knitr::kable(Tabla1)
+
+plot(ImpactRadioEnt,ImpactResilenciEnt)
+
+plot(ImpactTemp,ImpactResilenTemp)
+```
+
+# FALTAN PONER UNIDADES
+
+
+### 2.4 Conclusiones
+Como se ha podido observar, se verifica la afirmación de que a mayor entalla, se requirirá un mayor trabajo para poder romper la muestra y tener en cuenta la influencia de la temperatura sobre el ensayo, ya que a menor temperatura, menos resilencia, es decir, un material cuanto más rígido se encuentre más fácil será romperlo.
+
+
+## Práctica 3. Ensayo de dureza
+
+### 3.1 Introducción/anotaciones
+
+Hay varias maneras de medir la dureza de un material, generalmente se hace con un durómetro, en el laboratorio contamos con un durómetro digital y universal, esto último quiere decir que mide en las cuatro escalas de dureza (Brinell, Vickers, Rockwell y Shore), que se diferencian segun midan la huella, la profundidad tras penetrar un material a otro o la capacidad de recuperación elástica, es obvio que a mayor profundidad o tamaño de huella, la dureza será menor, por lo que hay una relación de proporcionalidad inversa.
+
+Importante dejar claro de antemano que en inglés se le conce a dureza como "hardness" y se representa con la letra H, no confundir con la H que hace referencia a la huella.
+
+
+
+- Dureza Brinell (HB): Trabaja con la huella y Se realiza con una bola con diámetro *D*, se penetra dicha bola con una determinada fuerza *P* y se mide todo el casquete esférico  con diámetro *d* de la huella generada al retirar la penetración.
+
+Se utiliza la fórmula $H=\frac{2P}{\pi D(\sqrt{D^{2}-d^{2})}}$ que proviene la la unión entre las igualdades de $HB=\frac{P}{H}$ y $H=\frac{\pi D(\sqrt{D^{2}-d^{2})}}{2}$.
+
+
+- Dureza Vickers (HV): Trabaja con la huella, esta forma de de medición será más útil para materiales más duros ya que a diferencia de la dureza Brinell esta usa una punta en forma de prirámide con un ángulo de 136 grados y su fórmula es $HV=\frac{1.854P}{L^2}$ que viene dada por $HV=\frac{P}{H}$ y $H=\frac{L^2}{1.854}$.
+
+
+- Dureza Rockwell (HR): Trabaja con la profundidad, en este caso a diferencia de los dos anteriores es una lectura directa de la dureza y es indiferente que la superficie este o no pulida, para realizar el este método primero se inserta un poco con una precarga para luego soltar la carga total y medir la diferncia de profundidad en la penetración, el material que penetra puede ser una punta de cono o bola admitiendo un amplio rango de medida de estos, pero se habrá de tener en cuenta.
+
+- Dureza Shore (HS): Trabaja con la recuperación elástica y es más comun usarlo para materiales blandos, existen dos escalas dependiendo de si los plásticos son duros (Shore A) o si son blandos (Shore B)
+    
+
+
+Todas la durezas tienen las mismas unidades (fuerza partido sección), sin embargo la conversión de valores entre ellas no es posible, por ello se ha de conocer bien de como funciona la dureza con la que estamos trabajando en cada momento.
+
+### 3.2 Objetivos
+
+El objetivo será el de conocer todos los tipos de durezas, las diferentes formas de como realizar el ensayo de forma correcta y saber utilizar las fórmulas dadas.
+
+### 3.3 Resultados
+![](C:\Users\Alejandro\Desktop\Portfolio Ciencia de Materiales\Tabla1.PNG)
+![](C:\Users\Alejandro\Desktop\Portfolio Ciencia de Materiales\Tabla2.PNG)
+
+### 3.4 Conclusiones
+
+
+## Práctica 4. Ensayo de fatiga
+
+### 4.1 Introducción/anotaciones
+
+### 4.2 Objetivos
+
+### 4.3 Resultados
+
+### 4.4 Conclusiones
+
+
+# Faltan
+## Resultados y conclusión en ensayo de tracción, creo que está mal la tabla
+## Unidades en los resultado en ensayo de resilencia y mejorar las gráficas y la tabla
+## Resultados y conclusión en ensayo de dureza
+## Ensayo de fatiga
