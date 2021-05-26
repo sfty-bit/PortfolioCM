@@ -212,9 +212,82 @@ El objetivo será el de conocer todos los tipos de durezas, las diferentes forma
 
 ### 4.4 Conclusiones
 
+## Práctica 5. Determinación de la resistividad eléctrica de metales
+
+### 5.1 Introducción/anotaciones
+
+Esta práctica será realizada únicamente a metales, dado que otros materiales tales como cerámicos y plásticos poseen una conductividad eléctrica prácticamente nula.
+
+La distáncia entre nuestros dos puntos (L) será constante e igual a 150mm
+
+Utilizaremos la conductividad IACS(%), que es aquella conductividad que toma como referencia al cobre que es un material muy conductor.
+
+La intensidad en esta práctica también será constante y fija, la única variable será la medida que realizaremos sobre el voltaje que estará asociado con la resistividad del material.
+$\rho=\frac{RA}{L}$ $R=\frac{V}{I}$ $\sigma=\frac{1}{\rho}$
+
+Cuanto mayor voltaje, mayor resistencia y menor conductividad.    
+
+Existe una relación directa entre conductividad eléctrica y térmica.
+
+### 5.2 Objetivos
+
+### 5.3 Resultados
+``` {r, echo=FALSE}
+
+ElecCobre <- c(0.053, 2, 150, 100)
+ElecLaton <- c(0.236, 2, 150, 100)
+ElecAlumn <- c(0.090, 2, 150, 100)
+ElecAl_Si_Mg <- c(0.165, 2, 150, 100)
+ElecAcero <- c(0.477, 2, 150, 100)
+ElecAceroInox <- c(2.396, 2, 150, 100)
+T_TablaElec <- data.frame(ElecCobre, ElecLaton, ElecAlumn, ElecAl_Si_Mg, ElecAcero, ElecAceroInox)
+TablaElec <- t(T_TablaElec)
+rownames(TablaElec) <- c('Cobre', 'Latón (60%  Cu - 40% Zn', 'Aluminio', 'Aleación Al-Si-Mg', 'Acero (0.4% C)', 'Acero inoxidable (18% Cr - 8% Ni)')
+colnames(TablaElec) <- c('V (mv)', 'I (A)', 'L (mm)', 'S (mm^2)')
+knitr::kable(TablaElec)
+
+
+ElecCobre2 <- c(0.053, 2, 150)
+ElecLaton2 <- c(0.236, 2, 150)
+ElecAlumn2 <- c(0.090, 2, 150)
+ElecAl_Si_Mg2 <- c(0.165, 2, 150)
+ElecAcero2 <- c(0.477, 2, 150)
+ElecAceroInox2 <- c(2.396, 2, 150)
+T_TablaElec2 <- data.frame(ElecCobre2, ElecLaton2, ElecAlumn2, ElecAl_Si_Mg2, ElecAcero2, ElecAceroInox2)
+TablaElec2 <- t(T_TablaElec2)
+rownames(TablaElec2) <- c('Cobre', 'Latón (60%  Cu - 40% Zn', 'Aluminio', 'Aleación Al-Si-Mg', 'Acero (0.4% C)', 'Acero inoxidable (18% Cr - 8% Ni)')
+colnames(TablaElec2) <- c('Resistividad', 'a', 'a')
+knitr::kable(TablaElec2)
+
+```
+
+### 5.4 Conclusiones
+
+
+## Práctica 6. Análisis microestructural
+
+### 5.1 Introducción/anotaciones
+
+### 5.2 Objetivos
+
+### 5.3 Resultados
+
+1. Describe brevemente los equipos y procesos empleados en la preparación metalográfica.
+
+2. Indica las principales diferencias entre un proceso de desbaste y otro de pulido.
+
+3. Haz un diagrama indicando las microestructuras que se pueden observar después del desbaste, el pulido y el ataque químico.
+
+Anexo
+Reactivos de ataque para examen microscópico.
+![](C:/Users/Alejandro/Desktop/Portfolio Ciencia de Materiales/Anexo_Análisis_microestructura.PNG)
+
+### 5.4 Conclusiones
+
 
 # Faltan
 ## Resultados y conclusión en ensayo de tracción, creo que está mal la tabla
 ## Unidades en los resultado en ensayo de resilencia y mejorar las gráficas y la tabla
 ## Resultados y conclusión en ensayo de dureza
 ## Ensayo de fatiga
+## Ensayo Eléctrico y microestructural inacabados
