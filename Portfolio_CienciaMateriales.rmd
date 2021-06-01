@@ -150,15 +150,21 @@ Resilencia<-c(28,1.375,2.5,3,3.4,4.875,0.375)
 
 T.Tabla1 <- data.frame(Radio, Temperatura, Sección, Trabajo, Resilencia)
 Tabla1 <- t(T.Tabla1)
-colnames(Tabla1)<-c("Probeta1","Probeta1","Probeta1","Probeta1","Probeta1","Probeta1","Probeta1")
+colnames(Tabla1)<-c("Probeta1","Probeta2","Probeta3","Probeta4","Probeta5","Probeta6","Probeta7")
+rownames(Tabla1)<-c('Radio (mm)','Temperatura (ºC)','Sección (mm^2)','Trabajo (kgm)','Resilencia (kgm/cm^2)')
 knitr::kable(Tabla1)
-
-plot(ImpactRadioEnt,ImpactResilenciEnt)
-
-plot(ImpactTemp,ImpactResilenTemp)
 ```
 
-# FALTAN PONER UNIDADES
+1. Establece la correlación gráfica entre las resilencias obtenidas y en radio de entalla
+```{r, echo=FALSE}
+plot(ImpactRadioEnt,ImpactResilenciEnt, type = "b", xlab = "Radio (mm)",ylab ="Resilencia (kgm/cm^2)")
+```
+2. Establece la correlación gráfica entre las resilencias de entalla 0.25 mm y su temperatura.
+```{r, echo=FALSE}
+plot(ImpactTemp,ImpactResilenTemp, type= "b", xlab = 
+       "Temperactura (ºC)", ylab = "Resilencia (kgm/cm^2)")
+
+```
 
 
 ### 2.4 Conclusiones
@@ -212,6 +218,7 @@ El objetivo será el de conocer todos los tipos de durezas, las diferentes forma
 
 ### 4.4 Conclusiones
 
+
 ## Práctica 5. Determinación de la resistividad eléctrica de metales
 
 ### 5.1 Introducción/anotaciones
@@ -230,6 +237,8 @@ Cuanto mayor voltaje, mayor resistencia y menor conductividad.
 Existe una relación directa entre conductividad eléctrica y térmica.
 
 ### 5.2 Objetivos
+
+Medir con el voltímetro el voltaje de cada metal cuando se les aplica una corriente eléctrica y clasificarlos según mejor o peor conductores entendiendo la razón de este comportamiento.
 
 ### 5.3 Resultados
 ``` {r, echo=FALSE}
@@ -256,7 +265,7 @@ ElecAceroInox2 <- c(2.396, 2, 150)
 T_TablaElec2 <- data.frame(ElecCobre2, ElecLaton2, ElecAlumn2, ElecAl_Si_Mg2, ElecAcero2, ElecAceroInox2)
 TablaElec2 <- t(T_TablaElec2)
 rownames(TablaElec2) <- c('Cobre', 'Latón (60%  Cu - 40% Zn', 'Aluminio', 'Aleación Al-Si-Mg', 'Acero (0.4% C)', 'Acero inoxidable (18% Cr - 8% Ni)')
-colnames(TablaElec2) <- c('Resistividad', 'a', 'a')
+colnames(TablaElec2) <- c('Resistividad (Ohmios*metro)', 'Conductividad (Ohmios*metro)^-1', 'Conductividad IACS (%)')
 knitr::kable(TablaElec2)
 
 ```
@@ -266,11 +275,11 @@ knitr::kable(TablaElec2)
 
 ## Práctica 6. Análisis microestructural
 
-### 5.1 Introducción/anotaciones
+### 6.1 Introducción/anotaciones
 
-### 5.2 Objetivos
+### 6.2 Objetivos
 
-### 5.3 Resultados
+### 6.3 Resultados
 
 1. Describe brevemente los equipos y procesos empleados en la preparación metalográfica.
 
@@ -282,12 +291,69 @@ Anexo
 Reactivos de ataque para examen microscópico.
 ![](C:/Users/Alejandro/Desktop/Portfolio Ciencia de Materiales/Anexo_Análisis_microestructura.PNG)
 
-### 5.4 Conclusiones
+### 6.4 Conclusiones
 
+## Práctica 7. Procesos de solidificación de metales. Aleaciones con solubilidad total
+
+### 7.1 Introducción/anotaciones
+
+En esta práctica verteremos cantidades variables de diferentes tipos de metales y los meteremos en el horno para luego medirlos con el termopar.
+
+El termopar mide la diferencia de potencial en cada momento (diferencia de energía), hay una relación directa con la medición de un voltímetro que mide las propiedades eléctricas, ya que a cuanto más conductividad térmica, mayor conductividad eléctrica, como vimos en la práctica 5. Hay varios escalas para el termopar, en este caso trabajaremos con la K.
+
+Hay que ir asegurandose de mantener el termopar en movimiento mientras que se hace la medición del metal o los metales ne enfriamiento para evitar que se quede pegado a estos en el proceso de solidificación.
+
+Una vez sacados los metales fundidos del horno, enfriaran más rápido dentro de un molde con mayor superficie que en uno con menor superficie, esto a causa de que en el molde grande hay más zonas a temperatura ambiente que en el pequeño.
+
+Un afinador de grano podría ser el carburo de silicio, que si se hubiera metido en el horno junto al zinc y al aluminio no hubiera llegado a fundir y además, provocara que en la estructura de los con los que haya entrado en contacto se formen más granos, que estos a su vez serán más pequeños, de ahí el nombre de "afinador".
+
+### 7.2 Objetivos
+
+Entender como fundir y medir sólidos para luego dejar que se enfrien y realizar diagramas de sólidos teniendo en cuenta el comportamiento de estos dado su análisis microestructural.
+
+### 7.3 Resultados
+
+### 7.4 Conclusiones
+
+## Práctica 8. Identificación de plásticos
+
+### 8.1 Introducción/anotaciones
+
+En la última práctica de la asignatura nos dedicaremos a identificar diferentes tipos de plásticos según su comportamiento ante el calor de una llama.
+
+Los plásticos con colorantes tales como la botella de "Solan de Cabras" no se suele reciclar, a causa de su color azul.
+
+Los plásticos más comunes en los supermecados suelen ser: Polietileno, Propileno y Poliestileno
+
+### 8.2 Objetivos
+
+Saber identificar y diferencia el comportamiento de la llama y su color, el color del humo y el olor desprendido para poder diferenciar entre PE, PA, PVC, PS, PMMA y PC (que serán ordenados de arriba hacia abajo respectivamente en la siguiente tabla).
+
+### 8.3 Resultados
+
+``` {r, echo=FALSE}
+
+PE<-c('Se propaga', 'Naranja', 'Blanco', 'Vela/cera')
+PA<-c('Se propaga y chisporrotea un poco', 'Naranja', 'Blanco', 'Pelo quemado')
+PVC<-c('Se autoextingue', 'Naranja apareciendo verde', 'Blanco', 'Cable quemado/ácido clorídrico')
+PS<-c('Se propaga', 'Rojiza','Negro','Poliestileno')
+PMMA<-c('Se propaga y chisporrotea mucho', 'Naranja', 'Blanco', 'Fragante')
+PC<-c('Se propaga', 'Naranja', 'Negro', 'Peculiar')
+T_TablaPlasticos<-data.frame(PE,PA,PVC,PS,PMMA,PC)
+TablaPlasticos<-t(T_TablaPlasticos)
+colnames(TablaPlasticos)<-c('Comportamiento de la llama','Color de la llama', 'Humo', 'Olor')
+rownames(TablaPlasticos)<-c('Polietileno/propileno','Poliamida','PVC','Poliestireno','Polimetilmetacrilato','Policarbonato')
+knitr::kable(TablaPlasticos)
+
+```
+
+### 8.4 Conclusiones
+
+Una buena forma de identificar plásticos es a través de la incineración de los mismos y la adecuada obsrvación del proceso, siempre que no se pueda realizar de una forma más ecológica y saludable.
 
 # Faltan
 ## Resultados y conclusión en ensayo de tracción, creo que está mal la tabla
-## Unidades en los resultado en ensayo de resilencia y mejorar las gráficas y la tabla
 ## Resultados y conclusión en ensayo de dureza
 ## Ensayo de fatiga
-## Ensayo Eléctrico y microestructural inacabados
+## Ensayo Eléctrico última tabla y conclusisones
+y microestructural inacabados
