@@ -1,16 +1,42 @@
 ---
 title: "Portfolio de Ciencia de Materiales"
-date: "10/8/2019"
 author: "Alejandro Burguete Medialdea"
-output: html_document
+date: "5/3/2021"
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ---
 ```{rsetup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(DiagrammeR)
 ```
 
-## Práctica 1. Ensayo de tracción
+![](c:\Users\Alejandro\Desktop\Portfolio Ciencia de Materiales\LogoEpsa.jpg)
+\newpage
+
+# Tabla de contenidos
+[Práctica 1. Ensayo de tracción](#Práctica1.Ensayo de tracción)
+
+[Práctica 2. Ensayo de resilencia](#Práctica 2. Ensayo de resilencia)
+
+[Práctica 3. Ensayo de dureza](#Práctica 3. Ensayo de dureza)
+
+[Práctica 4. Ensayo de fatiga](#Práctica 4. Ensayo de fatiga)
+
+[Práctica 5. Determinación de la resistividad eléctrica de los metales](#Práctica 5. Determinación de la resistividad eléctrica de los metales)
+
+[Práctica 6. Análisis microestructural](Práctica 6. Análisis microestructural)
+
+[Práctica 7. Procesos de solidificación de metales. Aleaciones con solubilidad total](#Práctica 7. Procesos de solidificación de metales. Aleaciones con solubilidad total)
+
+[Práctica 8. Identificación de plásticos](#Práctica 8. Identificación de plásticos)
+
+
+\newpage
+
+## Práctica 1.Ensayo de tracción
 
 ### 1.1. Introducción/anotaciones
 
@@ -51,7 +77,7 @@ MedCobre <- c(50, 12.5, 1, 70, 11, 0.9, 476, 2652)
 Sec0Co <- MedCobre[2] * MedCobre[3]
 SecfCo <- MedCobre[5] * MedCobre[6]
 TensElCo <- MedCobre[7] / Sec0Co
-TensMaxCo <- MedCobre[8] / SecfAc
+TensMaxCo <- MedCobre[8] / Sec0Co
 AlCo <- (MedCobre[4] - MedCobre[1]) / MedCobre[1]
 ZCo <- (Sec0Co -SecfCo) /Sec0Co
 
@@ -74,28 +100,36 @@ T.Tabla <- data.frame(Acero, Cobre, Polímero)
 Tabla <- t(T.Tabla)
 colnames(Tabla) <- c("Longitud inicial (mm)", "Anchura inicial (mm)", "Espesor inicial (mm)", "Sección inical (mm^2)", "Longitud final (mm)", "Anchura final (mm)", "Espesor final (mm)", "Sección final (mm^2)", "Fuerza elástica (N)", "Fuerza máxima (N)", "Tensión elástica (MPa)", "Tensión máxima (MPa)", "Alargamiento (%)", "Zona plástica (%)")
 knitr::kable(Tabla)
-
-
-#LOS RESULTADOS NO TERMINAN DE CONVENCERME
 ```
 
 
 
-*1.* Trazar el diagrama real (tensiones ‐ deformaciones unitarias) de los ensayos de tracción realizados sobre el acero F‐1140.
+**1. Trazar el diagrama real (tensiones ‐ deformaciones unitarias) de los ensayos de tracción realizados sobre el acero F‐1140.**
 
+![](C:/Users/Alejandro/Desktop/Portfolio Ciencia de Materiales/ACERO F-1140.PNG)
 
-*2.* Se desea construir un soporte de acero F‐1140 que sujete un peso de 4.500 kg. Calcular el diámetro mínimo de la barra necesario para que una vez liberado el peso recobre sus dimensiones iniciales.
+**2. Se desea construir un soporte de acero F‐1140 que sujete un peso de 4.500 kg. Calcular el diámetro mínimo de la barra necesario para que una vez liberado el peso recobre sus dimensiones iniciales.**
 
-Si tiene que soportar una masa de 4.500kg, el peso será dicho número multipliacado por la cosntante de la aceleración gravitatoria: $$4.500kg * 9.81m/s^2 = 44145N$$
+Si tiene que soportar una masa de 4.500kg, el peso será dicho número multiplicado por la cosntante de la aceleración gravitatoria: $$4.500kg * 9.81m/s^2 = 44145N$$
 
-En este caso el peso es la única fuerza que actúa sobre la carga entonces tendremos que ver cuanto
+En este caso el peso es la única fuerza que actúa sobre la carga, y sabiendo que la fórmula de la tensión en este caso sería de $S=\frac{\pi d^2}{4}$, si juntamos estas dos con la ecuación de la tensión elástica $\sigma_e = \frac{N}{S}$ de la cual ya conocemos su valor gracias al estudio previo del material plasmado en la tabla anterior nos quedaría la siguiente igualdad: $$170.32 MPA = \frac{44145N*4}{\pi d^2}$$.
 
-*3.* Se dispone de un soporte de acero F‐1140 ensayado con una sección de 75 mm2que está sometida a tracción. Calcular el peso máximo que puede soportar sin que se produzca deformación permanente.
+Si se ha operado correctamente la igualdad nos quedaría como resulado.
+$$d=18.18m$$
+El diámetro mínimo para que la carga con la que estamos trabajando permita al material recuperar su estado al dejarlo libre, será de 18.18 metros.
+
+**3. Se dispone de un soporte de acero F‐1140 ensayado con una sección de 75 mm2 que está sometida a tracción. Calcular el peso máximo que puede soportar sin que se produzca deformación permanente.**
+
+Este ejercico se resolverá de manera muy similar a la anterior, pero en vez de tener una incógnita en la sección, la tendremos en el peso.
+
+$$\sigma_e = \frac{N}{S}$$ $$170.32N=\frac{N}{0.075}$$
+
+$$N=12.75N$$
+El peso ejercido no tendrá que ser muy elevado al trabajar con una sección tan pequeña.
 
 ### 1.4. Conclusiones
 
-El polímero es más elástico....
-
+Se puede sacar mucha información relevante de la tabla obtenida en el estudio de tracción, además como se podrá observar, el polímero es el más elástico de los tres, no obstante, los metales tienden a presentar números más elevados en los límites de rotura.
 
 ## Práctica 2. Ensayo de resilencia
 
@@ -155,17 +189,23 @@ rownames(Tabla1)<-c('Radio (mm)','Temperatura (ºC)','Sección (mm^2)','Trabajo 
 knitr::kable(Tabla1)
 ```
 
-1. Establece la correlación gráfica entre las resilencias obtenidas y en radio de entalla
+**1. Establece la correlación gráfica entre las resilencias obtenidas y en radio de entalla.**
+
 ```{r, echo=FALSE}
-plot(ImpactRadioEnt,ImpactResilenciEnt, type = "b", xlab = "Radio (mm)",ylab ="Resilencia (kgm/cm^2)")
+plot(ImpactRadioEnt,ImpactResilenciEnt, type = "b", xlab = "Radio (mm)",ylab ="Resilencia (kgm/cm^2)", main = "Resilencia sobre radio de entalla")
 ```
-2. Establece la correlación gráfica entre las resilencias de entalla 0.25 mm y su temperatura.
+
+A mayor radio de entalla, mayor será el esfuerzo que habrá que realizar para la rotura del material, esto se debe a que la fuerza aplicada si no hay radio se concentra en un punto más específico que si hay radio, que en este caso se divide el golpe.
+
+**2. Establece la correlación gráfica entre las resilencias de entalla 0.25 mm y su temperatura.**
+
 ```{r, echo=FALSE}
 plot(ImpactTemp,ImpactResilenTemp, type= "b", xlab = 
-       "Temperactura (ºC)", ylab = "Resilencia (kgm/cm^2)")
+       "Temperactura (ºC)", ylab = "Resilencia (kgm/cm^2)", main = "Resilencia sobre temperatura")
 
 ```
 
+En este caso se puede ver que el material se puede romper fácilmente si esta frío que si no.
 
 ### 2.4 Conclusiones
 Como se ha podido observar, se verifica la afirmación de que a mayor entalla, se requirirá un mayor trabajo para poder romper la muestra y tener en cuenta la influencia de la temperatura sobre el ensayo, ya que a menor temperatura, menos resilencia, es decir, un material cuanto más rígido se encuentre más fácil será romperlo.
@@ -205,19 +245,152 @@ El objetivo será el de conocer todos los tipos de durezas, las diferentes forma
 ![](C:\Users\Alejandro\Desktop\Portfolio Ciencia de Materiales\Tabla1.PNG)
 ![](C:\Users\Alejandro\Desktop\Portfolio Ciencia de Materiales\Tabla2.PNG)
 
+**1. Establece la correlación gráfica entre la carga de rotura $R_m$, el límite elástico $R_e$, y el alargamiento, A, de los aceros ensayados, con la dureza BRINELL.**
+
+Para la realización de estas gráficas nos ayudaremos con el anexo adjuntado más abajo y con las tablas de arriba.
+
+```{r, echo=FALSE}
+HB <- c(145.04, 180.24, 219.48, 260.27, 284.85)
+Re_Br <- c(240, 260, 300, 340, 370)
+Rm_Br <- c(430, 470, 550, 620, 680)
+Alargamiento_Br <- c(24, 22, 18, 14, 11)
+
+plot(Re_Br, HB, type = "b", ylab = "Dureza Brinell", xlab = "Límite elástico", main = "Dureza Brinnel sobre límite elástico")
+plot(Rm_Br, HB, type = "b", ylab = "Dureza Brinell", xlab = "Carga de rotura", main = "Dureza Brinnel sobre carga")
+plot(Alargamiento_Br, HB, type = "b", ylab = "Dureza Brinell", xlab = "Alargamiento", main = "Dureza Brinnel sobre alargamiento")
+```
+
+Como se puede observar, cuanto mayor es el valor de la dureza Brinell, mayor será su carga de rotura y su límite elástico, no obstante, menor será su alargamiento.
+
+**2. Establece la correlación gráfica entre la carga de rotura $R_m$, el límite elástico $R_e$, y el alargamiento, A, de los aceros ensayados, con la dureza ROCKWELL B.**
+
+```{r, echo = FALSE}
+
+HRb <- c(79, 88, 92, 98, 102)
+
+plot(Re_Br, HRb, type = "b", ylab = "Dureza Rockwell b", xlab = "Límite elástico", main = "Dureza Rockwell b sobre límite elástico")
+plot(Rm_Br, HRb, type = "b", ylab = "Dureza Rockwell b", xlab = "Carga de rotura", main = "Dureza Rockwell b sobre carga")
+plot(Alargamiento_Br, HRb, type = "b", ylab = "Dureza Rockwell b", xlab = "Alargamiento", main = "Dureza Rockwell b sobre alargamiento")
+```
+
+Al igual que en el ejercicio uno, los dos primeros tienen una relación positiva y el último inversa.
+
+**Anexo.**
+
+
+![](C:\Users\Alejandro\Desktop\Portfolio Ciencia de Materiales\Anexo_Dureza.PNG)
+
 ### 3.4 Conclusiones
 
+Es importante conocer en cada momento con que dureza esta trabajando uno y cual es la más idónea para cada material, para ello hay que entender correctamente todas las durezas con las que un trabaja.
 
 ## Práctica 4. Ensayo de fatiga
 
 ### 4.1 Introducción/anotaciones
 
+No siempre hace falta aportar grandes esfuerzos para provocar el fallo en un material, ya que si ocurren muchos esfuerzos pequeños pero constantes el material podrá romper tras un determinado tiempo.
+
+Prácticamente la totalidad de piezas en ingeniería están sometidas a una fatiga constante, por ello es importante estudiar y conocer el comportamiento de lo que que estamos trabajando.
+
+Realizaremos una flexión rotativa para metales, la probeta realizará vueltas constantes mientras que sus fibras superior e inferior soportaran un esfuerzo de tracción y compresión respectivamente que cada media vuelta cambiará entre ello.
+
+Se entiende que a mayor nivel de tensiones soportado, menor vueltas serán necesarias.
+
 ### 4.2 Objetivos
+
+En esta práctica buscaremos saber resolver ciertos problemas y entender la relación entre tensión y número de ciclos que hay que dar para que un material se dañe o se rompa.
 
 ### 4.3 Resultados
 
+**1. Se ensaya un acero F-1140 cuyo $R_e=255$MPa. Calcular las cargas requeridas que inducen tensiones de 30, 40 50, 60 y 80 % del límite elástico sobre un diámetro de 8 mm y una longitud de 140 mm.**
+
+$R_n=\frac{F*l}{w_0}$ $W_0=\frac{\pi*d^3}{32}$
+
+**Resultados obtenidos.**
+
+```{r, echo = FALSE}
+
+El1 <- c(255, 150, 168, 0.6)
+El2 <- c(204, 500, 556, 1.0)
+El3 <- c(153, 1200, 1365, 1.9)
+El4 <- c(127.5, 10400, 11750, 2.5)
+El5 <- c(102, 76000, 8.2*10^4, 4.0)
+El6 <- c(76.5, 8*10^6,9.1*10^6, 7.4)
+T.Tabla_El <- data.frame(El1, El2, El3, El4, El5, El6)
+Tabla_El <- t(T.Tabla_El)
+colnames(Tabla_El) <- c("Tensión Rn (MPA)", "ng (ciclos)", "nr (ciclos)", "g (mm)")
+rownames(Tabla_El) <- c("100%", "80%", "60%", "50%", "40%", "30%")
+knitr::kable(Tabla_El)
+```
+
+Siendo:
+$n_g=$número de ciclos que aparece la grieta.
+$n_r=$número de ciclos hasta la rotura de la probeta.
+$g=$profundidad de la grieta
+
+Para este ejercicio nos servirán de ayuda las fórmulas que anexaron en el manual de prácticas
+$R_n=\frac{F*l}{w_0}$ $W_0=\frac{\pi*d^3}{32}$
+
+$W_0$ es constante en este ejercicio por lo que vamos a calcularla primero $W_0=\frac{\pi*8^3}{32}=16 \pi mm$
+
+Ahora despejaremos la fórmula de la tensión dejando la incógnita sola en un lado $F=\frac{R_n*w_0}{L}$
+
+Conociendo los datos que están proporcionados aarriba, resolvemos
+
+$F_1=\frac{R_n*w_0}{L}=\frac{76.516 \pi}{0.14}=27466.49577mN$
+$F_2=\frac{R_n*w_0}{L}=\frac{102*16 \pi}{0.14}=36621.99436mN$
+$F_3=\frac{R_n*w_0}{L}=\frac{127.5*16 \pi}{0.14}=45777.49295mN$
+$F_4=\frac{R_n*w_0}{L}=\frac{153*16 \pi}{0.14}=54932.99154$
+$F_5=\frac{R_n*w_0}{L}=\frac{204 * 16 \pi}{0.14}=73243.98872mN$
+
+**1. Analiza la correlación gráfica entre las tensiones aplicadas y el número de ciclos transcurridos hasta el inicio de la grieta. (Curva de dañado).**
+
+```{r, echo = FALSE}
+
+Fat_tens <- c(76.5, 102, 127.5, 153, 204, 255)
+ciclos_dano <- c(8*10^6, 76000, 10400, 1200, 500, 150)
+
+log1 <- log(8*10^6, base = 10)
+log2 <- log(76000, base = 10)
+log3 <- log(10400, base = 10)
+log4 <- log(1200, base = 10)
+log5 <- log(500, base = 10)
+log6 <- log(150, base = 10)
+ciclos_dano.log <- c(log1, log2, log3, log4, log5, log6)
+plot(ciclos_dano.log, Fat_tens, xlab = "Ciclos antes de que se dañe", ylab = "Tensión (MPa)", type = "b", main = "Tensión sobre cilos de dañado")
+
+```
+
+Esa sería nuestra relación, a mayor tensión, menos vueltas soporta el material, este tipo de gráficas son curvas, no obstante el software con el que estoy trabajando solo me permite unir los puntos con líneas rectas, necesitaría más puntos para que mi gráfica se asemeje cada vez más a una curva.
+
+Notar además como es necesario el uso de una escala logarítmica para poder graficar los datos de una manera visual cómoda, ya que la diferencia entre los ciclos del primero con los ciclos del último es de poco menos de diez mil. La escala es de base diez.
+
+**2. Analiza la correlación gráfica entre las tensiones aplicadas y el número de ciclos transcurridos hasta la rotura. (CUrva de Wöhler). Indicando el límite de fatiga del material.**
+
+```{r, echo = FALSE}
+
+ciclos_rotura <- c(9.1*10^6, 8.2*10^4, 11750, 556, 168)
+
+logr1 <- log(9.1*10^6, base = 10)
+logr2 <- log(8.2*10^4, base = 10)
+logr3 <- log(11750, base = 10)
+logr4 <- log(1365, base = 10)
+logr5 <- log(556, base = 10)
+logr6 <- log(168, base = 10)
+
+ciclos_rotura.log <- c(logr1, logr2, logr3, logr4, logr5, logr6)
+plot(ciclos_rotura.log, Fat_tens, xlab = "Ciclos antes de la rotura", ylab = "Tensión (MPa)", type = "b", main = "Tensión sobre ciclos de rotura")
+```
+
+Al igual que en el ejercico uno, se han utilizado logaritmos de base 10. Y también debe aproximarse el resultado a una curva.
+
+**3. Compara las probetas de bajo nivel de tensiones con las de alto nivel de tensiones analizando la topografía de la sección de fractura**
+
 ### 4.4 Conclusiones
 
+Para varios materiales su resistencia a la fatiga será tan grande que nunca se llegaran a alcanzar el número de vueltas en la vida útil de la pieza.
+
+Ser conscientes de que los refuerzos a un material alargaran su resistencia contra la fatiga mientras que esta se verá reducida porla presencia de entallas, orificios, hendidudras...
 
 ## Práctica 5. Determinación de la resistividad eléctrica de metales
 
@@ -241,6 +414,9 @@ Existe una relación directa entre conductividad eléctrica y térmica.
 Medir con el voltímetro el voltaje de cada metal cuando se les aplica una corriente eléctrica y clasificarlos según mejor o peor conductores entendiendo la razón de este comportamiento.
 
 ### 5.3 Resultados
+
+**Datos obtenidos.**
+
 ``` {r, echo=FALSE}
 
 ElecCobre <- c(0.053, 2, 150, 100)
@@ -254,24 +430,32 @@ TablaElec <- t(T_TablaElec)
 rownames(TablaElec) <- c('Cobre', 'Latón (60%  Cu - 40% Zn', 'Aluminio', 'Aleación Al-Si-Mg', 'Acero (0.4% C)', 'Acero inoxidable (18% Cr - 8% Ni)')
 colnames(TablaElec) <- c('V (mv)', 'I (A)', 'L (mm)', 'S (mm^2)')
 knitr::kable(TablaElec)
+```
 
 
-ElecCobre2 <- c(0.053, 2, 150)
-ElecLaton2 <- c(0.236, 2, 150)
-ElecAlumn2 <- c(0.090, 2, 150)
-ElecAl_Si_Mg2 <- c(0.165, 2, 150)
-ElecAcero2 <- c(0.477, 2, 150)
-ElecAceroInox2 <- c(2.396, 2, 150)
+**1. Determinar la resistividad y la conductividad a partir de los datos obtenidos en la práctica, así cono la conductividad IACS (%) de los materiales analizados**
+
+```{r, echo=FALSE}
+
+ElecCobre2 <- c(0.0177, 56.60, 100)
+ElecLaton2 <- c(0.0786, 12.72, 22.46)
+ElecAlumn2 <- c(0.03, 33.33, 58.89)
+ElecAl_Si_Mg2 <- c(0.055,18.18,32.12)
+ElecAcero2 <- c(0.159,6.29,11.11)
+ElecAceroInox2 <- c(0.7987,1.25,2.21)
+
 T_TablaElec2 <- data.frame(ElecCobre2, ElecLaton2, ElecAlumn2, ElecAl_Si_Mg2, ElecAcero2, ElecAceroInox2)
 TablaElec2 <- t(T_TablaElec2)
 rownames(TablaElec2) <- c('Cobre', 'Latón (60%  Cu - 40% Zn', 'Aluminio', 'Aleación Al-Si-Mg', 'Acero (0.4% C)', 'Acero inoxidable (18% Cr - 8% Ni)')
 colnames(TablaElec2) <- c('Resistividad (Ohmios*metro)', 'Conductividad (Ohmios*metro)^-1', 'Conductividad IACS (%)')
 knitr::kable(TablaElec2)
-
 ```
 
 ### 5.4 Conclusiones
 
+El cobre por lo que hemos visto es uno de los metales más coductores que existen y por ello se ve tanto en los cables eléctricos, a diferencia del acero que se podría decir que no hay mucha demanda de cables de acero.
+
+Notar además que tanto el acero como el aluminio puro han resultado ser muchísimo más conductores que sus coreespondientes aleaciones, por lo que se podría decir que el desorden en la estructura de un metal favorece su resistividad eléctrica y por lo tanto reduce su conductividad.
 
 ## Práctica 6. Análisis microestructural
 
@@ -285,7 +469,7 @@ El objetivo de esta práctica será conocer los distintos tipos de pasos que hay
 
 ### 6.3 Resultados
 
-1. Describe brevemente los equipos y procesos empleados en la preparación metalográfica.
+**1. Describe brevemente los equipos y procesos empleados en la preparación metalográfica.**
 
 La preparación metalográfica consta de los siguientes pasos:
 
@@ -308,13 +492,15 @@ El sistema más habitual es el químico aunque también se usa mucho el electrol
 El último paso sería la observación mediante microscopios de luz reflejada para cuantificar los elementos microestructurales.
 
 
-2. Indica las principales diferencias entre un proceso de desbaste y otro de pulido.
+**2. Indica las principales diferencias entre un proceso de desbaste y otro de pulido.**
 
 El proceso de desbaste trata de eliminar las irregularidades más notables para luego dejarle el acabado final (de la parte mecánica) al pulido, si bien es cierto que el preceso del desbaste no es "necesario" para el proceso de la metalografía ya que se puede hacer todo con el pulido, esto no es nada óptimo y muy ineficiente. Por lo que el desbaste ahorra mucho tiempo y esfuerzo encargandose de las partes más difíciles de retirar.
 
-3. Haz un diagrama indicando las microestructuras que se pueden observar después del desbaste, el pulido y el ataque químico.
+**3. Haz un diagrama indicando las microestructuras que se pueden observar después del desbaste, el pulido y el ataque químico.**
 
-Anexo del proceso de ataque:
+No recuerdo bien lo que salía en cada momento, únicamente que obviamente al acabar la práctica se podeía ver el grano y que en el desbaste se veía el material rayado, mientras que el rayado del pulido era más fino.
+
+**Anexo del proceso de ataque:**
 Reactivos de ataque para examen microscópico.
 ![](C:/Users/Alejandro/Desktop/Portfolio Ciencia de Materiales/Anexo_Análisis_microestructura.PNG)
 
@@ -342,7 +528,91 @@ Entender como fundir y medir sólidos para luego dejar que se enfrien y realizar
 
 ### 7.3 Resultados
 
+**Datos registrados.**
+
+```{r, echo = FALSE}
+
+Uno <- c(1, 100, 0, 637.5, 637.5, 21.2)
+Dos <- c(2, 96, 4, 627, 575, 25.7)
+Tres <- c(3, 90, 10, 620, 550, 49.2)
+Cuatro <- c(4, 75, 25, 587.5, 500, 55.2)
+Cinco <- c(5, 50, 50, 537.5, 450, 66.0)
+Seis <- c(6, 0, 100, 412.5, 412.5, 12.3)
+
+HV <- c(21.2, 25.7, 49.2, 55.2, 66.0, 12.3)
+Zinc <- c(0, 4, 10, 25, 50, 100)
+
+T.TablaSol1 <- data.frame(Uno, Dos, Tres, Cuatro, Cinco, Seis)
+TablaSol1 <- t(T.TablaSol1)
+colnames(TablaSol1) <- c("Muestra", "%Al", "%Zn", "Ti (ºC)", "Ts (ºC)", "HV (N/mm^2)")
+rownames(TablaSol1) <- NULL
+knitr::kable(TablaSol1)
+
+
+A <- c("A", 0.21, 30, 2.5, 2.9, 2.7, 8, 21.6)
+B <- c("B", 0.47, 35, 1.7, 2.3, 2.0, 6, 12)
+C <- c("C", 0.80, 42, 1.2, 1.7, 1.5, 5, 7.5)
+D <- c("D", 1.21, 50, 0.5, 0.9, 0.7, 4, 2.8)
+
+T.TablaSol2 <- data.frame(A, B, C, D)
+TablaSol2 <- t(T.TablaSol2)
+colnames(TablaSol2) <- c("Molde", "Masa (kg)", "Velocidad enfriam.(ºC/s", "Mín. ancho (mm)", "Máx. ancho (mm)", "Ancho prom. (mm)", "Largo medio (mm)", "Área media (mm^2)")
+rownames(TablaSol2) <- NULL
+knitr::kable(TablaSol2)
+
+Af1 <- c(5, 1, 30, 2.2, 2.4, 2.3, 6, 13.8)
+Af2 <- c(10, 2, 30, 1.8, 2.0, 1.9, 5, 9.5)
+Af3 <- c(15, 4, 30, 1.2, 1.4, 1.3, 4, 5.2)
+Af4 <- c(20, 8, 30, 0.7, 1.0, 0.8, 2, 1.6)
+
+TamanoGrano <- c(13.8, 9.5, 5.2, 1.6)
+Porcentaje_afinador <- c(1,2,4,8)
+
+T.Tabla_AF <- data.frame(Af1, Af2, Af3, Af4)
+Tabla_AF <- t(T.Tabla_AF)
+colnames(Tabla_AF) <- c("Afinador (g)", "Afinador (%)", "Vel. enfriam. (ºC/s)", "Máx dendríticos", "Mín dendríticos", "Promedio dendríticos", "Largo medio dendríticos (mm)", "Área media")
+rownames(Tabla_AF) <- NULL
+knitr::kable(Tabla_AF)
+```
+
+**1. Representa la correlación gráfica entre %Zn y la dureza obtenida.**
+
+Ahora vamos a graficar los datos obtenidos y reflejados en las tablas en relación a la dureza.
+
+```{r, echo = FALSE}
+plot(Zinc, HV, type = "b", xlab = "Porcentaje de Zinc (%)", ylab = "Dureza Vickers", main = "Cantidad de Zinc sobre dureza Vickers")
+```
+
+Como se puede observar, el zinc le aporta dureza al aluminio, cuanto más zinc haya, más fuerte será la aleación, siempre que no exceda el límite de porcentaje de zinc, una vez pasado el límite, la dureza disminuirá como se puede ver en el gráfico de arriba, me gustaría tener más puntos a partir del 50% de zinc para poder ver donde se encuentra dicho límite con mayor precisión.
+
+**2. Dibuja el diagrama de equilibrio de una aleación con solubilidad total en estado sólido a partir de las curvas de enfiamiento que se adjuntan, describiendo las diversas fases en que queda dividido.**
+
+Al ser una aleación de solubilidad total, lo único que deberemos de realizar será marcar todas las temperaturas iniciales y finales que hemos registrado de nuestras curvas de enfriamiento y unirlas mediante líneas, quedándonos un diagrama como el de abajo.
+
+![](C:/Users/Alejandro/Desktop/Portfolio Ciencia de Materiales/DiagramasoltotalAlZn1.png)
+
+
+**3. Investiga las funciones de correlación entre el tamaño de las dendritas y la velocidad de enfriamiento del molde.**
+
+A mayor velocidad de enfriamiento menor tamaño de las dendritas o ramificaciones, esto se debe a que al enfriar tan rápido no deja tiempo a que se fomen adecuadamente, como dice la definición de dendritas, aparecen en metales con enfriamiento lento.
+
+**4. Correlaciona el tamaño de grano dendrítico con el porcentaje de afinador de grano.**
+
+Es obvia la afirmación de que a cuento más afinador de grano exista, el tamaño de este será más y más pequeño, esto se puede representar de una forma muy cómoda en una gráfica.
+
+```{r, echo =FALSE}
+
+plot(TamanoGrano, Porcentaje_afinador, xlab = "Área grano (mm^2)", ylab = "Cantidad de afinador (%)", type = "b", main = "Tamaño del grano sobre porcentaje de afinador")
+
+```
+
+**Anexo**
+
+![](C:/Users/Alejandro/Desktop/Portfolio Ciencia de Materiales/DiagramaAlZn.PNG)
+
 ### 7.4 Conclusiones
+
+Es importante conocer las curvas de enfriamiento de distintos materiales para poder determinar su comportamiento, y aún más sus diagramas de equilibrio que proporcionan una gran cantidad de información.
 
 ## Práctica 8. Identificación de plásticos
 
@@ -362,27 +632,26 @@ Saber identificar y diferencia el comportamiento de la llama y su color, el colo
 
 ``` {r, echo=FALSE}
 
-PE<-c('Se propaga', 'Naranja', 'Blanco', 'Vela/cera')
-PA<-c('Se propaga y chisporrotea un poco', 'Naranja', 'Blanco', 'Pelo quemado')
-PVC<-c('Se autoextingue', 'Naranja apareciendo verde', 'Blanco', 'Cable quemado/ácido clorídrico')
-PS<-c('Se propaga', 'Rojiza','Negro','Poliestileno')
-PMMA<-c('Se propaga y chisporrotea mucho', 'Naranja', 'Blanco', 'Fragante')
-PC<-c('Se propaga', 'Naranja', 'Negro', 'Peculiar')
+PE <- c('Se propaga', 'Naranja', 'Blanco/gris', 'Vela/cera')
+PA <- c('Se propaga y chisporrotea un poco', 'Naranja', 'Blanco/gris', 'Pelo quemado')
+PVC <- c('Se autoextingue', 'Naranja apareciendo verde', 'Blanco/gris', 'Cable quemado/ácido clorídrico')
+PS <- c('Se propaga', 'Rojiza','Negro','Poliestileno')
+PMMA <- c('Se propaga y chisporrotea mucho', 'Naranja', 'Blanco/gris', 'Fragante')
+PC <- c('Se propaga', 'Naranja', 'Negro', 'Peculiar')
 T_TablaPlasticos<-data.frame(PE,PA,PVC,PS,PMMA,PC)
 TablaPlasticos<-t(T_TablaPlasticos)
-colnames(TablaPlasticos)<-c('Comportamiento de la llama','Color de la llama', 'Humo', 'Olor')
-rownames(TablaPlasticos)<-c('Polietileno/propileno','Poliamida','PVC','Poliestireno','Polimetilmetacrilato','Policarbonato')
+colnames(TablaPlasticos) <- c('Comportamiento de la llama','Color de la llama', 'Humo', 'Olor')
+rownames(TablaPlasticos) <- c('Polietileno/propileno','Poliamida','PVC','Poliestireno','Polimetilmetacrilato','Policarbonato')
 knitr::kable(TablaPlasticos)
 
 ```
 
+**1. Comenta las ventajas de emplear PVC (policloruro de vinilo) como aislante eléctrico**
+
+El PVC, es un material muy conocido y esto se debe en parte a que es el material más recomendado para la fabricación de cables, entendemos pues, que esto se deberá a algo, por ello vamos a analizar sus ventajas como aislante eléctrico.
+
+Esta resina termoplástica que se puede ablandar fácilmente con calor es uno de los materiales más resistentes frente la abrasión y que posee bajo peso manteniendo una fuerza mecánica aceptable, teinde a poseer una vida útil mayor llegando a los cuarenta aóas, fácil mantenimiento, resistente al agua, disponible en abundancia y económico.
+
 ### 8.4 Conclusiones
 
 Una buena forma de identificar plásticos es a través de la incineración de los mismos y la adecuada obsrvación del proceso, siempre que no se pueda realizar de una forma más ecológica y saludable.
-
-# Faltan
-## Resultados y conclusión en ensayo de tracción, creo que está mal la tabla
-## Resultados y conclusión en ensayo de dureza
-## Ensayo de fatiga
-## Ensayo Eléctrico última tabla y conclusisones
-y microestructural inacabados
